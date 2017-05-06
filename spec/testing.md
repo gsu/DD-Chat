@@ -1,4 +1,5 @@
 This app is written in Angular1.
+
 Steps to deploy and test:
 run `npm install` to get the dependencies
 run `npm run api-server` to start the api-server (make sure the server is started on port 8080)
