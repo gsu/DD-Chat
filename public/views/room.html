@@ -1,0 +1,50 @@
+<div class="left-col">
+	<div class="left-col-header">
+		<div class="left-header-name">{{username}}</div>
+		<div class="timer">Online for {{onlineTimer}} minutes</div>
+	</div>
+
+	<div class="left-col-nav">
+		<div ng-repeat="room in rooms" 
+			ng-click="getRoom(room.id)" 
+			class="nav-item" 
+			ng-class="{active: room.name==currentRoom.name}">
+			{{room.name}}
+		</div>
+	</div>
+</div>
+
+<div class="right-col">
+	<div class="name-header">
+		<div class="room-name">{{currentRoom.name}}</div>
+
+		<div>
+			<span class="my-name">
+				{{username}}
+			</span>
+			<span ng-repeat="user in currentRoom.users" ng-if="user != username" class="other-name">
+				,&nbsp;{{user}}
+			</span>
+		</div>
+	</div>
+
+	<div class="message-container" scroll-glue>
+		<div ng-repeat="message in messages">
+			<div ng-class="{'my-message': message.name == username}" class="message-box">
+				{{message.message}}
+			</div>
+			<div ng-if="message.name != username" class="message-name">
+				{{message.name}}
+			</div>
+		</div>
+	</div>
+
+	<div class="input-container">
+		<input ng-model="messageInput" 
+			class="message-input" 
+			autofocus="true"
+			ng-keyup="$event.keyCode == 13 && postMessage()" 
+			placeholder="Type a message..."></input>
+		<span ng-click="postMessage()" class="message-send">Send</span>
+	</div>
+</div>
